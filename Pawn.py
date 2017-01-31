@@ -2,6 +2,9 @@ class Pawn(object):
     """ Class representating a pawn of the game """
 
     def __init__(self, color):
+        """
+        self.color Color of the pawn and player owner
+        """
 
         self.color = color
 
