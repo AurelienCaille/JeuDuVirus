@@ -15,5 +15,5 @@ class VirusGame(object):
 
     def play(self):
         """ Launch the game """
-        pass
+        self.first_player.play(self.grid)
 

@@ -21,3 +21,17 @@ class Player(object):
     def set_adversary(self, adversary):
         """ Set the adversary of the player """
         self.adversary = adversary
+
+    def play(self, grid):
+        """ Ask to the player to play """
+
+        choice = input("Where do you play ?")
+        choice = choice.split()
+
+        if len(choice) != 2:
+            print("Wrong input, sorry you pass your turn")
+        else:
+            grid.add_a_pion(self, choice[0], choice[1])
+
+        self.adversary.play(grid)
+
