@@ -1,0 +1,2 @@
+class VirusGame(object):
+    pass
