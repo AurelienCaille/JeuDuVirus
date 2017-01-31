@@ -1,4 +1,6 @@
+""" Module comprising the Player class """
 class Player(object):
+    """ class representating a player """
     def __init__(self, name, color):
         """
         :self.name name of the Player
@@ -13,7 +15,9 @@ class Player(object):
         self.adversary = None
 
     def get_adversary(self):
+        """ Return adversary of the player """
         return self.adversary
 
     def set_adversary(self, adversary):
+        """ Set the adversary of the player """
         self.adversary = adversary

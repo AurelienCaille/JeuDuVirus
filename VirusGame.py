@@ -1,6 +1,8 @@
+""" Module comprising the VirusGame class """
 from Grid import Grid
 
 class VirusGame(object):
+    """ Class representating a VirusGame and control it """
 
     def __init__(self, size, first_player):
         """
@@ -12,5 +14,6 @@ class VirusGame(object):
         self.first_player = first_player
 
     def play(self):
+        """ Launch the game """
         pass
 
