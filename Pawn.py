@@ -1,3 +1,4 @@
+""" Module comprising the Pawn class """
 class Pawn(object):
     """ Class representating a pawn of the game """
 
