@@ -31,7 +31,7 @@ class Player(object):
         if len(choice) != 2:
             print("Wrong input, sorry you pass your turn")
         else:
-            grid.add_a_pion(self, choice[0], choice[1])
+            grid.add_a_pion(self, int(choice[0]), int(choice[1]))
 
         self.adversary.play(grid)
 
