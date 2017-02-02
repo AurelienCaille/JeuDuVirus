@@ -50,3 +50,39 @@ class Grid(object):
             repr_string += "\n"
 
         return repr_string
+
+    def give_winner(self):
+        """
+        give_winner return a str announcement of the winner
+        Browsing the grid, the methode define what pwan are more present
+        return exemple:
+        >>> red player is the winner
+        """
+        # Define what are the color of pwan by browsing self.grid
+        score_player_0 = 0
+        score_player_1 = 0
+        players = []
+        while len(players) != 2:
+            for line in self.grid:
+                for cell in line:
+                    if self.grid[line]cell[] != None and if len(players) == 0:
+                            players.append(self.grid[line]cell[].color)
+                    if self.grid[line]cell[] != (players[0] and None) and len(players) == 1:
+                         players.append(self.grid[line]cell[].color)
+        
+        # Counting numburs of pawns and scoring
+        for line in self.grid:
+                for cell in line:
+                    if self.grid[line]cell[] == players[0]:
+                        score_player_0 += 1
+                    if self.grid[line]cell[] == players[1]:
+                         score_player_1 +=1
+        
+        # Return in function of the score 
+        if score_player_0 > score_player_1 :
+            return (players[0].color, ' player is the winner')
+        if score_player_1 > score_player_0 :
+            return (players[1].color, ' player is the winner')
+        if score_player_0 = score_player_1 :
+            return (players[0].color, ' and ', players[1].color, ' are ex aequo')
+        
