@@ -35,4 +35,8 @@ class Player(object):
         else:
             grid.add_a_pawn(self.color, int(choice[0]), int(choice[1]))
 
-        self.adversary.play(grid)
+        print("______________________________")
+        if grid.is_finished():
+            grid.give_winner()
+        else:
+            self.adversary.play(grid)
