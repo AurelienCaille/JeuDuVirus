@@ -44,7 +44,10 @@ class Grid(object):
 
         for x in range(len(self.grid)):
             for y in range(len(self.grid)):
-                repr_string += str(self.grid[x][y])
+                if self.grid[x][y] == None:
+                    repr_string += "."
+                else:
+                    repr_string += str(self.grid[x][y])
                 repr_string += "\t"
             
             repr_string += "\n"
