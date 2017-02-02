@@ -46,7 +46,7 @@ class Grid(object):
             for y in range(len(self.grid)):
                 repr_string += str(self.grid[x][y])
                 repr_string += "\t"
-            
+
             repr_string += "\n"
 
         return repr_string
@@ -58,31 +58,14 @@ class Grid(object):
         return exemple:
         >>> red player is the winner
         """
-        # Define what are the color of pwan by browsing self.grid
-        score_player_0 = 0
-        score_player_1 = 0
-        players = []
-        while len(players) != 2:
-            for line in self.grid:
-                for cell in line:
-                    if self.grid[line]cell[] != None and if len(players) == 0:
-                            players.append(self.grid[line]cell[].color)
-                    if self.grid[line]cell[] != (players[0] and None) and len(players) == 1:
-                         players.append(self.grid[line]cell[].color)
-        
-        # Counting numburs of pawns and scoring
+        # Define what are the color of pwan by browsing self.grid and scoring
+        players = {}
         for line in self.grid:
-                for cell in line:
-                    if self.grid[line]cell[] == players[0]:
-                        score_player_0 += 1
-                    if self.grid[line]cell[] == players[1]:
-                         score_player_1 +=1
-        
-        # Return in function of the score 
-        if score_player_0 > score_player_1 :
-            return (players[0].color, ' player is the winner')
-        if score_player_1 > score_player_0 :
-            return (players[1].color, ' player is the winner')
-        if score_player_0 = score_player_1 :
-            return (players[0].color, ' and ', players[1].color, ' are ex aequo')
+            for cell in line:
+                if cell != None and cell not in players:
+                    players[cell.color] = 1
+                if cell != None and cell in players:
+                    players[cell.color] += 1
+
+        return (max(players, key=lambda k: players[k]), ' players are the winner')
         
