@@ -22,8 +22,8 @@ class Grid(object):
             return False
 
         self.grid[x_position][y_position] = Pawn(color)
-        for i in range(-1, 2):
-            for j in range(-1, 2):
+        for x in range(-1, 2):
+            for y in range(-1, 2):
                 try:
                     self.grid[x_position + x][y_position + y].change_color(color)
                 except:
