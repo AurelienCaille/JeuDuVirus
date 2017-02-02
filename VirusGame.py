@@ -21,7 +21,7 @@ class VirusGame(object):
 if __name__ == "__main__":
 
     J_1 = Player("J1", "blue")
-    J_2 = Player("J2", "blue")
+    J_2 = Player("J2", "red")
 
     J_1.set_adversary(J_2)
     J_2.set_adversary(J_1)
