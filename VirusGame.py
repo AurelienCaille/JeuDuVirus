@@ -26,6 +26,6 @@ if __name__ == "__main__":
     J_1.set_adversary(J_2)
     J_2.set_adversary(J_1)
 
-    Virusgame = VirusGame(4, J_1)
-    Virusgame.play()
+    VIRUSGAME = VirusGame(4, J_1)
+    VIRUSGAME.play()
 
