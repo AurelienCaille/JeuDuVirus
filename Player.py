@@ -26,14 +26,22 @@ class Player(object):
     def play(self, grid):
         """ Ask to the player to play """
         pprint(grid)
+        choice = ""
 
-        choice = input("Where do you play ?")
-        choice = choice.split()
+        while len(choice) != 2:
+            choice = input("Where do you play ?")
+            choice = choice.split()
 
-        if len(choice) != 2:
-            print("Wrong input, sorry you pass your turn")
-        else:
-            grid.add_a_pawn(self.color, int(choice[0]), int(choice[1]))
+            if len(choice) != 2:
+                print("Wrong input")
+            else:
+                try:
+                    x_choice = int(choice[0])
+                    y_choice = int(choice[1])
+                    grid.add_a_pawn(self.color, int(choice[0]), int(choice[1]))
+                except:
+                    print("Error input")
+                    choice = ""
 
         print("______________________________")
         if grid.is_finished():
