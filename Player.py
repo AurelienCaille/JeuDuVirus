@@ -1,3 +1,4 @@
+from pprint import pprint
 """ Module comprising the Player class """
 class Player(object):
     """ class representating a player """
@@ -24,6 +25,7 @@ class Player(object):
 
     def play(self, grid):
         """ Ask to the player to play """
+        pprint(grid)
 
         choice = input("Where do you play ?")
         choice = choice.split()
@@ -31,7 +33,6 @@ class Player(object):
         if len(choice) != 2:
             print("Wrong input, sorry you pass your turn")
         else:
-            grid.add_a_pion(self, int(choice[0]), int(choice[1]))
+            grid.add_a_pawn(self.color, int(choice[0]), int(choice[1]))
 
         self.adversary.play(grid)
-

@@ -12,3 +12,9 @@ class Pawn(object):
     def change_color(self, color):
         """ Change the color of the pawn to the new color """
         self.color = color
+
+    def __repr__(self):
+        return str(self.color)
+
+    def __str__(self):
+        return str(self.color)
