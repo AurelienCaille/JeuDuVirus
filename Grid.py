@@ -15,7 +15,19 @@ class Grid(object):
         """
         Methode to add a player's pawn to the Grid
         """
-        self.grid[y_position][x_position] = Pawn(color)
+        if x_position > len(self.grid) or y_position > len(self.grid):
+            return False
+
+        if self.grid[x_position][y_position] != None:
+            return False
+
+        self.grid[x_position][y_position] = Pawn(color)
+        for x in range(-1, 2):
+            for y in range(-1, 2):
+                try:
+                    self.grid[x_position + x][y_position + y].change_color(color)
+                except:
+                    pass
 
     def is_finished(self):
         """
