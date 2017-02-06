@@ -54,6 +54,11 @@ class Grid(object):
 
         return repr_string
 
+    def empty_square(self):
+        """ Return list of empty square in the grid """
+        size = len(self.grid)
+        return [(x, y) for y in range(size) for x in range(size) if self.grid[x][y] == None]
+
     def give_winner(self):
         """
         give_winner return a str announcement of the winner

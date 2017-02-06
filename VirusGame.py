@@ -1,6 +1,7 @@
 """ Module comprising the VirusGame class """
 from Grid import Grid
 from Player import Player
+from Computer import Computer
 
 class VirusGame(object):
     """ Class representating a VirusGame and control it """
@@ -21,7 +22,7 @@ class VirusGame(object):
 if __name__ == "__main__":
 
     J_1 = Player("J1", "blue")
-    J_2 = Player("J2", "red")
+    J_2 = Computer("J2", "red")
 
     J_1.set_adversary(J_2)
     J_2.set_adversary(J_1)
