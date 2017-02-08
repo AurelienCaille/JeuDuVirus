@@ -18,7 +18,7 @@ class Grid(object):
         if x_position > len(self.grid) or y_position > len(self.grid):
             return False
 
-        if self.grid[x_position][y_position] != None:
+        if not self.grid[x_position][y_position] is None:
             return False
 
         self.grid[x_position][y_position] = Pawn(color)
@@ -54,6 +54,20 @@ class Grid(object):
 
         return repr_string
 
+    def copy(self):
+        """ Return a copy of the grid (including copying pawn) """
+
+        size = len(self.grid)
+        new_grid = Grid(size)
+
+        for x in range(size):
+            for y in range(size):
+                if self.grid[x][y] != None:
+                    new_grid.add_a_pawn(self.grid[x][y].color, x, y)
+
+        return new_grid
+
+
     def empty_square(self):
         """ Return list of empty square in the grid """
         size = len(self.grid)
@@ -76,4 +90,3 @@ class Grid(object):
                     players[cell.color] += 1
 
         return (max(players, key=lambda k: players[k]), ' players are the winner')
-        
