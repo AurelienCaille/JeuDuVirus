@@ -45,6 +45,6 @@ class Player(object):
 
         print("______________________________")
         if grid.is_finished():
-            grid.give_winner()
+            print(grid.give_winner())
         else:
             self.adversary.play(grid)
