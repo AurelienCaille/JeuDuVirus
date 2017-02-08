@@ -1,8 +1,8 @@
-import sys
 import random
 from Player import Player
 
-TRIALS = 2
+TRIALS = 3  # 4 become long
+
 
 class Computer(Player):
     """ class representating a computer wich can play the VirusGame """
@@ -14,13 +14,73 @@ class Computer(Player):
     def play(self, grid):
         """ Compute the best move to play """
 
-        self.random_play(grid)
-        self.adversary.play(grid)
+        # self.random_play(grid)
+        print("Computing...")
+        best_move = self.min_max_computation(grid, TRIALS)
+        grid.add_a_pawn(self.color, best_move[0], best_move[1])
+        print("best next move:", self.min_max_computation(grid, TRIALS))
+        print("______________________________")
+        if grid.is_finished():
+            print(grid.give_winner())
 
-    def max_min_computation(self, grid):
-        """ Comput the best move to play with min_max """
+        else:
+            self.adversary.play(grid)
 
-        pass
+    def min_max_computation(self, grid, trials):
+        """
+        Compute the best move with min max algorithm, return the "best" move
+        """
+        # Associate plays and score
+        best_score = -float('inf')
+        move = ()
+        for empty in grid.empty_square():
+
+            new_grid = grid.copy()
+            new_grid.add_a_pawn(self.color, empty[0], empty[1])
+
+            score = self.min_computation(grid, trials-1)
+
+            if score > best_score:
+                best_score = score
+                move = empty
+
+        return move
+
+    def max_computation(self, grid, trials):
+        """ Compute the max move for the adversary in min_max algorithm """
+
+        if trials == 0 or grid.is_finished():
+            return self.valuate_grid_score(grid)
+
+        else:
+            # Play
+            plays = []
+            for empty in grid.empty_square():
+                new_grid = grid.copy()
+                new_grid.add_a_pawn(self.color, empty[0], empty[1])
+                plays.append(new_grid)
+
+            # Return max of the player (create the recursivity)
+            return max([self.max_computation(play, trials - 1) \
+                        for play in plays])
+
+    def min_computation(self, grid, trials):
+        """ Compute the min move for the adversary in min_max algorithm """
+
+        if trials == 0 or grid.is_finished():
+            return self.valuate_grid_score(grid)
+
+        else:
+            # Play for the adversary
+            plays = []
+            for empty in grid.empty_square():
+                new_grid = grid.copy()
+                new_grid.add_a_pawn(self.adversary.color, empty[0], empty[1])
+                plays.append(new_grid)
+
+            # Return max of the player (create the recursivity)
+            return min([self.max_computation(play, trials - 1) \
+                        for play in plays])
 
     def random_play(self, grid):
         """ Play at a random position """
@@ -28,25 +88,25 @@ class Computer(Player):
         random_choice = random.choice(grid.empty_square())
         grid.add_a_pawn(self.color, random_choice[0], random_choice[1])
 
-
-    def valuate_grid(self, grid):
-        """ 
+    def valuate_grid_score(self, grid):
+        """
         Valuate the situation of a grid
         return the score of the situation
         +1 For possesing pawn
         -1 For not possessing pawn
         0 for None playing
         """
-        size = len(grid)
+        size = len(grid.grid)
         score = 0
 
         for x in range(size):
             for y in range(size):
-                if grid[x][y] == None:
+                if grid.grid[x][y] is None:
                     continue
-
-                if grid[x][y].color == self.color:
-                    score += 1
                 else:
-                    score -= 1
+                    if grid.grid[x][y].color == self.color:
+                        score += 1
+                    else:
+                        score -= 1
+        return score
 
