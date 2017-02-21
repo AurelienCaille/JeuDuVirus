@@ -1,7 +1,7 @@
 import random
 from Player import Player
 
-TRIALS = 3  # 4 become long
+TRIALS = 4  # 4 become long
 
 
 class Computer(Player):
@@ -17,8 +17,8 @@ class Computer(Player):
         # self.random_play(grid)
         print("Computing...")
         best_move = self.min_max_computation(grid, TRIALS)
+        print("I play:", best_move)
         grid.add_a_pawn(self.color, best_move[0], best_move[1])
-        print("best next move:", self.min_max_computation(grid, TRIALS))
         print("______________________________")
         if grid.is_finished():
             print(grid.give_winner())
@@ -61,7 +61,7 @@ class Computer(Player):
                 plays.append(new_grid)
 
             # Return max of the player (create the recursivity)
-            return max([self.max_computation(play, trials - 1) \
+            return max([self.min_computation(play, trials - 1) \
                         for play in plays])
 
     def min_computation(self, grid, trials):
