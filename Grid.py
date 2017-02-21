@@ -22,12 +22,15 @@ class Grid(object):
             return False
 
         self.grid[x_position][y_position] = Pawn(color)
+        size = len(self.grid)
         for x in range(-1, 2):
             for y in range(-1, 2):
-                try:
-                    self.grid[x_position + x][y_position + y].change_color(color)
-                except:
-                    pass
+                if x + x_position >= 0 or x + x_position - 1 < size:
+                    if y + y_position >= 0 or y + y_position - 1 < size:
+                        try:
+                            self.grid[x_position + x][y_position + y].change_color(color)
+                        except:
+                            pass
 
     def is_finished(self):
         """
